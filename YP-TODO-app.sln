@@ -1,8 +1,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.5.2.0
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11626.88 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApi", "TodoApi\TodoApi.csproj", "{A9D74EAC-F660-8A73-E2EA-C8EF81470181}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoService", "TodoService\TodoService.csproj", "{55DA244A-2D4D-49CC-BA04-1932EFF94566}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoService.Test", "TodoService.Test\TodoService.Test.csproj", "{14F98A31-31A3-4968-A2B4-AA6D888550B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,6 +18,14 @@ Global
 		{A9D74EAC-F660-8A73-E2EA-C8EF81470181}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9D74EAC-F660-8A73-E2EA-C8EF81470181}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9D74EAC-F660-8A73-E2EA-C8EF81470181}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55DA244A-2D4D-49CC-BA04-1932EFF94566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55DA244A-2D4D-49CC-BA04-1932EFF94566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55DA244A-2D4D-49CC-BA04-1932EFF94566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55DA244A-2D4D-49CC-BA04-1932EFF94566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14F98A31-31A3-4968-A2B4-AA6D888550B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14F98A31-31A3-4968-A2B4-AA6D888550B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14F98A31-31A3-4968-A2B4-AA6D888550B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14F98A31-31A3-4968-A2B4-AA6D888550B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
