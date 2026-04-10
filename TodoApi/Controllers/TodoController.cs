@@ -11,6 +11,7 @@ namespace TodoApi.Controllers
     {
         // GET: TodoController
         [HttpGet]
+        [Produces("application/json")]
         public async Task<ActionResult<List<TodoItemResponse>>> Get()
         {
             var result = await todoService.getAllTodosAsync();
@@ -19,8 +20,9 @@ namespace TodoApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Produces("application/json")]
         // GET: TodoController/Details/5
-        public async Task<ActionResult> Details(Guid id)
+        public async Task<ActionResult<TodoItemResponse>> Details(Guid id)
         {
             var result = await todoService.getTodoByIdAsync(id);
 
@@ -41,12 +43,13 @@ namespace TodoApi.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<ActionResult> Patch(Guid id, [FromBody] CreateToDoItemRequestDto todoItem)
+        public async Task<ActionResult> Patch(Guid id, [FromBody] PatchToDoItemRequestDto todoItem)
         {
             var serviceTodoItem = new TodoItem
             {
                 Id = id,
-                Title = todoItem.Title
+                Title = todoItem.Title,
+                isCompleted = todoItem.isCompleted
             };
 
             await todoService.updateTodoItemAsync(id, serviceTodoItem);
