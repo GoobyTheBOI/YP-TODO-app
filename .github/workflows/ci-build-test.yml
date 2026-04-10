@@ -32,7 +32,7 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
-          files: '**/test-results/**/*.xml'
+          files: '**/test-results/**/*.trx'
 
       - name: Publish 🚀
         run: dotnet publish TodoApi -c Release -o ./publish
