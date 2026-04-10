@@ -26,7 +26,16 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Test 🧪
-        run: dotnet test --configuration Release --no-build 
+        run: dotnet test --configuration Release --no-build
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: '**/test-results/**/*.xml'
+
+      - name: Publish 🚀
+        run: dotnet publish TodoApi -c Release -o ./publish
 
       - uses: actions/upload-artifact@v4
         with:
