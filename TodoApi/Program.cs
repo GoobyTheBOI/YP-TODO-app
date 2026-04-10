@@ -19,6 +19,7 @@ builder.Services.AddDbContext<TodoDbContext>(options =>
 builder.Services.AddScoped<TodoService>();
 builder.Services.AddScoped<TodoRepository>();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
 
 var app = builder.Build();
 
@@ -34,6 +35,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
 
