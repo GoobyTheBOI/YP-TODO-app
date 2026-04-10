@@ -10,7 +10,6 @@ namespace TodoApi.Controllers
     [ApiController]
     public class TodoController(ITodoService todoService) : Controller, ITodoController
     {
-        // GET: TodoController
         [HttpGet]
         [Produces("application/json")]
         public async Task<ActionResult<List<TodoItemResponse>>> Get()
@@ -22,7 +21,6 @@ namespace TodoApi.Controllers
 
         [HttpGet("{id}")]
         [Produces("application/json")]
-        // GET: TodoController/Details/5
         public async Task<ActionResult<TodoItemResponse>> GetById(Guid id)
         {
             var result = await todoService.GetTodoByIdAsync(id);

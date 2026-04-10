@@ -1,9 +1,9 @@
 ﻿using TodoServices.Dto;
-using TodoRepositories;
 using TodoRepositories.Entity;
 using TodoRepositories.IRepository;
 using TodoServices.Exceptions;
 using TodoServices.IService;
+using TodoServices.ValueObjects;
 
 namespace TodoServices.Service
 {
@@ -24,19 +24,12 @@ namespace TodoServices.Service
             return todoItems;
         }
 
-        public async Task<TodoItem> GetTodoByIdAsync(Guid id) {
+        public async Task<TodoItem> GetTodoByIdAsync(Guid id)
+        {
+            var validatedId = TodoId.Create(id);
 
-            if(id.Equals(Guid.Empty))
-            {
-                throw new NotFoundException($"Todo item with id {id} was not found.");
-            }
-
-            var result = await todoRepository.GetTodoById(id);
-
-            if (result == null)
-            {
-                throw new NotFoundException($"Todo item with id {id} was not found.");
-            }
+            var result = await todoRepository.GetTodoById(validatedId.Value) ?? 
+                throw new NotFoundException($"Todo item with id {validatedId} was not found.");
 
             var todoItem = new TodoItem
             {
@@ -53,41 +46,37 @@ namespace TodoServices.Service
         {
             if (todoItem == null)
             {
-                return;
+                throw new BadRequestException("Todo item cannot be null.");
             }
+
+            var validatedTitle = TodoItemTitle.Create(todoItem.Title);
 
             var entity = new TodoItemEntity
             {
                 Id = todoItem.Id,
-                Title = todoItem.Title,
+                Title = validatedTitle.Value,
                 isCompleted = todoItem.isCompleted,
                 CreatedDate = todoItem.CreatedDate
             };
-
-            if (string.IsNullOrWhiteSpace(entity.Title))
-            {
-                throw new MissingDataException("Todo item title is missing.");
-            }
 
             await todoRepository.CreateTodoItemAsync(entity);
         }
 
         public async Task UpdateTodoItemAsync(Guid id, TodoItem? todoItem)
         {
+            var validatedId = TodoId.Create(id);
+
             if (todoItem == null)
             {
-                throw new MissingDataException("Todo item data are required to update a todo item.");
+                throw new BadRequestException("Todo item data are required to update a todo item.");
             }
 
-            if (id == Guid.Empty)
-            {
-                throw new NotFoundException($"Todo item with id {id} was not found.");
-            }
+            var validatedTitle = TodoItemTitle.Create(todoItem.Title);
 
             var entity = new TodoItemEntity
             {
-                Id = id,
-                Title = todoItem.Title,
+                Id = validatedId.Value,
+                Title = validatedTitle.Value,
                 isCompleted = todoItem.isCompleted,
                 CreatedDate = todoItem.CreatedDate
             };
@@ -97,19 +86,12 @@ namespace TodoServices.Service
 
         public async Task DeleteTodoItemAsync(Guid id)
         {
-            if(id == Guid.Empty)
-            {
-                throw new MissingDataException("Id is required to delete a todo item.");
-            }
+            var validatedId = TodoId.Create(id);
 
-            var task = await todoRepository.GetTodoById(id);
+            var task = await todoRepository.GetTodoById(validatedId.Value) ??
+                throw new NotFoundException($"Todo item with id {validatedId} was not found.");
 
-            if(task == null)
-            {
-                throw new NotFoundException($"Todo item with id {id} was not found.");
-            }
-
-            await todoRepository.DeleteTodoItemAsync(id);
+            await todoRepository.DeleteTodoItemAsync(validatedId.Value);
         }
 
     }

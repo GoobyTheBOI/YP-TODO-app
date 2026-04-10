@@ -13,7 +13,6 @@ namespace TodoApi.Middleware
             var traceId = Activity.Current?.Id ?? httpContext.TraceIdentifier;
 
             _logger.LogError(exception, "An unhandled exception has occurred with traceId: {traceId}", traceId);
-            _logger.LogInformation("Mapping exception to HTTP response with traceId: {traceId}", traceId);
 
             var (statusCode, title) = MapException(exception);
 
@@ -35,7 +34,7 @@ namespace TodoApi.Middleware
             {
                 UnauthorizedAccessException => (StatusCodes.Status401Unauthorized, exception.Message),
                 NotFoundException => (StatusCodes.Status404NotFound, exception.Message),
-                MissingDataException => (StatusCodes.Status400BadRequest, exception.Message),
+                BadRequestException => (StatusCodes.Status400BadRequest, exception.Message),
                 _ => (StatusCodes.Status500InternalServerError, "An error occurred")
             };
         }
