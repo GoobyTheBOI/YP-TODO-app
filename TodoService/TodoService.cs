@@ -9,9 +9,9 @@ namespace TodoServices.Service
 {
     public class TodoService(ITodoRepository todoRepository) : ITodoService
     {
-        public async Task<List<TodoItem>> getAllTodosAsync()
+        public async Task<List<TodoItem>> GetAllTodosAsync()
         {
-            var result = await todoRepository.getAllTodos();
+            var result = await todoRepository.GetAllTodos();
 
             var todoItems = result.Select(todoItem => new TodoItem
             {
@@ -24,14 +24,14 @@ namespace TodoServices.Service
             return todoItems;
         }
 
-        public async Task<TodoItem> getTodoByIdAsync(Guid id) {
+        public async Task<TodoItem> GetTodoByIdAsync(Guid id) {
 
             if(id.Equals(Guid.Empty))
             {
                 throw new NotFoundException($"Todo item with id {id} was not found.");
             }
 
-            var result = await todoRepository.getTodoById(id);
+            var result = await todoRepository.GetTodoById(id);
 
             if (result == null)
             {
@@ -49,7 +49,7 @@ namespace TodoServices.Service
             return todoItem;
         }
 
-        public async Task createTodoItemAsync(TodoItem? todoItem)
+        public async Task CreateTodoItemAsync(TodoItem? todoItem)
         {
             if (todoItem == null)
             {
@@ -69,10 +69,10 @@ namespace TodoServices.Service
                 throw new MissingDataException("Todo item title is missing.");
             }
 
-            await todoRepository.createTodoItemAsync(entity);
+            await todoRepository.CreateTodoItemAsync(entity);
         }
 
-        public async Task updateTodoItemAsync(Guid id, TodoItem? todoItem)
+        public async Task UpdateTodoItemAsync(Guid id, TodoItem? todoItem)
         {
             if (todoItem == null)
             {
@@ -92,24 +92,24 @@ namespace TodoServices.Service
                 CreatedDate = todoItem.CreatedDate
             };
 
-            await todoRepository.updateTodoItemAsync(entity);
+            await todoRepository.UpdateTodoItemAsync(entity);
         }
 
-        public async Task deleteTodoItemAsync(Guid id)
+        public async Task DeleteTodoItemAsync(Guid id)
         {
             if(id == Guid.Empty)
             {
                 throw new MissingDataException("Id is required to delete a todo item.");
             }
 
-            var task = await todoRepository.getTodoById(id);
+            var task = await todoRepository.GetTodoById(id);
 
             if(task == null)
             {
                 throw new NotFoundException($"Todo item with id {id} was not found.");
             }
 
-            await todoRepository.deleteTodoItemAsync(id);
+            await todoRepository.DeleteTodoItemAsync(id);
         }
 
     }
