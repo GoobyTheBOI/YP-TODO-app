@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TodoApi.DTO;
+using TodoApi.IController;
 using TodoServices.Dto;
-using TodoServices.Service;
+using TodoServices.IService;
 
 namespace TodoApi.Controllers
 {
     [Route("api/todos")]
     [ApiController]
-    public class TodoController(TodoService todoService) : Controller
+    public class TodoController(ITodoService todoService) : Controller, ITodoController
     {
         // GET: TodoController
         [HttpGet]

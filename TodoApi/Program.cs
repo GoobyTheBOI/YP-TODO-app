@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Middleware;
 using TodoRepositories;
+using TodoRepositories.IRepository;
+using TodoServices.IService;
 using TodoServices.Service;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,8 +18,8 @@ builder.Services.AddDbContext<TodoDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
-builder.Services.AddScoped<TodoService>();
-builder.Services.AddScoped<TodoRepository>();
+builder.Services.AddScoped<ITodoService, TodoService>();
+builder.Services.AddScoped<ITodoRepository, TodoRepository>();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 

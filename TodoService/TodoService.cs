@@ -1,11 +1,13 @@
 ﻿using TodoServices.Dto;
 using TodoRepositories;
 using TodoRepositories.Entity;
+using TodoRepositories.IRepository;
 using TodoServices.Exceptions;
+using TodoServices.IService;
 
 namespace TodoServices.Service
 {
-    public class TodoService(TodoRepository todoRepository)
+    public class TodoService(ITodoRepository todoRepository) : ITodoService
     {
         public async Task<List<TodoItem>> getAllTodosAsync()
         {

@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TodoRepositories.Entity;
+using TodoRepositories.IRepository;
 
 namespace TodoRepositories
 {
-    public class TodoRepository(TodoDbContext dbContext)
+    public class TodoRepository(TodoDbContext dbContext) : ITodoRepository
     {
         public async Task<List<TodoItemEntity>> getAllTodos()
         {
