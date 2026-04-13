@@ -1,4 +1,5 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.4.11626.88
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -18,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{0DAE77
 		.github\workflows\codeql.yml = .github\workflows\codeql.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoRepository.Test", "TodoRepository.Test\TodoRepository.Test.csproj", "{34544C40-3300-4B7C-AF96-CA896D8C4C5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApi.Test", "TodoApi.Test\TodoApi.Test.csproj", "{A8F32AFE-E3EC-44C0-90A9-9684C97A5F78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,10 +43,10 @@ Global
 		{871F1254-AAA4-4814-B1AA-0EADEFFE736F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{871F1254-AAA4-4814-B1AA-0EADEFFE736F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{871F1254-AAA4-4814-B1AA-0EADEFFE736F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{34544C40-3300-4B7C-AF96-CA896D8C4C5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34544C40-3300-4B7C-AF96-CA896D8C4C5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34544C40-3300-4B7C-AF96-CA896D8C4C5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34544C40-3300-4B7C-AF96-CA896D8C4C5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8F32AFE-E3EC-44C0-90A9-9684C97A5F78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8F32AFE-E3EC-44C0-90A9-9684C97A5F78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8F32AFE-E3EC-44C0-90A9-9684C97A5F78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8F32AFE-E3EC-44C0-90A9-9684C97A5F78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

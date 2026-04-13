@@ -38,5 +38,11 @@ namespace TodoApi.Middleware
                 _ => (StatusCodes.Status500InternalServerError, "An error occurred")
             };
         }
+
+        // Exposed for testing purposes
+        public static (int statusCode, string title) TestableMapException(Exception exception)
+        {
+            return MapException(exception);
+        }
     }
 }
