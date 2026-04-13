@@ -42,11 +42,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// Add root endpoint
-app.MapGet("/", () => Results.Ok(new { message = "TODO API is running", version = "1.0", docs = "/swagger" }))
-    .WithName("Root")
-    .WithOpenApi()
-    .Produces(StatusCodes.Status200OK)
-    .WithSummary("Root endpoint");
-
 app.Run();
